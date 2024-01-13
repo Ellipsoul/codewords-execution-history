@@ -3,8 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { Providers } from "./(app)/Providers";
-import HeaderComponent from "./(app)/Header";
+import HeaderComponent from "./(app)/HeaderComponent";
 import { classNames } from "@/lib/helpers";
+import FooterComponent from "./(app)/FooterComponent";
 
 // The entire app uses the Inter font
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -31,7 +32,7 @@ export default function RootLayout({
         <Providers>
           <HeaderComponent />
           <main className="grow">{children}</main>
-          <footer>2024 Agemo</footer>
+          <FooterComponent />
         </Providers>
       </body>
     </html>

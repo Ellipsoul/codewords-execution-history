@@ -1,33 +1,4 @@
-"use client";
-
-import React from "react";
-import { useTheme } from "next-themes";
-import { SunIcon } from "@heroicons/react/20/solid";
-
-const HeaderComponent: React.FC = () => {
-  const { theme, setTheme } = useTheme();
-
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
-  return (
-    <header className="flex flex-row justify-between items-center h-24 px-12">
-      <CodewordsLogo />
-
-      <button
-        type="button"
-        className="rounded-full bg-teal-600 p-1 text-white shadow-sm hover:bg-teal-500 focus-visible:outline
-        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
-        onPointerDown={toggleTheme}
-      >
-        <SunIcon className="h-8 w-8" aria-hidden="true" />
-      </button>
-    </header>
-  );
-};
-
-const CodewordsLogo = () => (
+export const CodewordsLogo = () => (
   <svg
     height="24"
     viewBox="0 0 261 32"
@@ -46,5 +17,3 @@ const CodewordsLogo = () => (
     <path d="M260.026 14.7856H255.254C254.7 12.6977 252.783 11.8881 250.226 11.8881C248.01 11.8881 245.965 12.8682 245.965 14.4021C245.965 15.9361 247.073 16.7457 249.033 17.1292L252.271 17.7683C256.916 18.6631 260.453 20.1119 260.453 24.5859C260.453 29.3582 255.936 32 250.738 32C245.113 32 241.363 28.8043 240.809 24.4581H245.752C246.221 26.8016 247.925 28.1651 250.908 28.1651C253.55 28.1651 255.51 27.0573 255.51 25.1824C255.51 23.3076 253.805 22.4554 251.547 22.0293L248.096 21.3475C244.218 20.5806 241.193 18.8336 241.193 14.6578C241.193 10.6099 245.539 8.01065 250.524 8.01065C254.998 8.01065 259.089 10.1838 260.026 14.7856Z"></path>
   </svg>
 );
-
-export default HeaderComponent;
