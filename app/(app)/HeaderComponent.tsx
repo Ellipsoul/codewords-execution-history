@@ -22,8 +22,9 @@ export default function HeaderComponent(): JSX.Element {
 
       <button
         type="button"
-        className="rounded-full bg-emerald-600 p-1 text-white shadow-sm hover:bg-emerald-500 focus-visible:outline
-        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+        className="rounded-full bg-sky-500 dark:bg-sky-600 p-1 text-white shadow-sm hover:bg-sky-400
+        dark:hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+        focus-visible:outline-sky-600"
         onPointerDown={toggleTheme}
       >
         {theme === "light" ? (

@@ -11,7 +11,8 @@ import {
 import { CircleIcon } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 
-const NUM_EXECUTIONS_PER_FETCH = 5;
+const INITIAL_ITEMS_TO_FETCH = 5;
+const ADDITIONAL_ITEMS_TO_FETCH = 3;
 
 export default function ExecutionsPage({
   params,
@@ -24,7 +25,7 @@ export default function ExecutionsPage({
 
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [itemsToDisplay, setItemsToDisplay] = useState<number>(
-    NUM_EXECUTIONS_PER_FETCH
+    INITIAL_ITEMS_TO_FETCH
   );
 
   // Load mocked app data and executions into component
@@ -62,8 +63,15 @@ export default function ExecutionsPage({
   const showMoreExecutions = () => {
     setItemsToDisplay(
       (prevNumItemsToDisplay) =>
-        prevNumItemsToDisplay + NUM_EXECUTIONS_PER_FETCH
+        prevNumItemsToDisplay + ADDITIONAL_ITEMS_TO_FETCH
     );
+  };
+
+  // Handle search input
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    // When a user types in the search bar, reset the number of items to display
+    setItemsToDisplay(INITIAL_ITEMS_TO_FETCH);
   };
 
   return isLoading ? (
@@ -87,17 +95,22 @@ export default function ExecutionsPage({
           type="text"
           placeholder="Search"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={handleSearch}
         />
       </section>
       <ExecutionsAccordion
         appExecutionIds={appExecutionIds}
         itemsToDisplay={itemsToDisplay}
+        searchTerm={searchTerm}
       />
       <button
         className="font-bold text-sm disabled:opacity-20 disabled:cursor-not-allowed"
         onClick={showMoreExecutions}
-        disabled={itemsToDisplay >= appExecutionIds.length}
+        disabled={
+          itemsToDisplay >=
+          appExecutionIds.filter((id) => id.toString().includes(searchTerm))
+            .length
+        }
       >
         View More
       </button>
@@ -109,9 +122,11 @@ export default function ExecutionsPage({
 function ExecutionsAccordion({
   appExecutionIds,
   itemsToDisplay,
+  searchTerm,
 }: {
   appExecutionIds: number[];
   itemsToDisplay: number;
+  searchTerm: string;
 }): JSX.Element {
   return (
     <Accordion
@@ -119,27 +134,33 @@ function ExecutionsAccordion({
       collapsible
       className="w-full flex flex-col gap-y-2 pb-3"
     >
-      {appExecutionIds.slice(0, itemsToDisplay).map((executionId) => (
-        <AccordionItem
-          key={executionId}
-          value={String(executionId)}
-          className="rounded-sm bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 dark:hover:bg-zinc-700
+      {appExecutionIds
+        .filter((executionId) => executionId.toString().includes(searchTerm))
+        .slice(0, itemsToDisplay)
+        .map((executionId) => (
+          <AccordionItem
+            key={executionId}
+            value={String(executionId)}
+            className="rounded-sm bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 dark:hover:bg-zinc-700
           px-2 sm:px-4 cursor-pointer border-zinc-300 dark:border-zinc-700"
-        >
-          <AccordionTrigger>
-            <div className="flex flex-row items-center justify-start gap-x-4">
-              <CircleIcon className="w-2 h-2 xs:w-3 xs:h-3 md:w-4 md:h-4 text-green-500 fill-green-500" />
-              <span className="font-bold text-xs sm:text-sm md:text-md">
-                {executionId}
-              </span>
-              <span className="text-2xs xs:text-xs">
-                {formatDistanceToNow(executionId * 1000)} ago
-              </span>
-            </div>
-          </AccordionTrigger>
-          <AccordionContent>Content goes here</AccordionContent>
-        </AccordionItem>
-      ))}
+          >
+            <AccordionTrigger>
+              <div className="flex flex-row items-center justify-start gap-x-4">
+                <CircleIcon
+                  className="w-2 h-2 xs:w-3 xs:h-3 md:w-4 md:h-4
+                text-green-400 fill-green-400 dark:text-green-500 dark:fill-green-500"
+                />
+                <span className="font-bold text-xs sm:text-sm md:text-md">
+                  {executionId}
+                </span>
+                <span className="text-2xs xs:text-xs">
+                  {formatDistanceToNow(executionId * 1000)} ago
+                </span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>Content goes here</AccordionContent>
+          </AccordionItem>
+        ))}
     </Accordion>
   );
 }
