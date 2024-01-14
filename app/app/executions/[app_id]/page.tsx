@@ -70,14 +70,13 @@ export default function ExecutionsPage({
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </section>
-      <section className="w-full">
-        <AccordionDemo />
-      </section>
+      <ExecutionsAccordion />
     </main>
   );
 }
 
-function AccordionDemo() {
+// Accordion listing the app executions
+function ExecutionsAccordion(): JSX.Element {
   return (
     <Accordion
       type="single"
