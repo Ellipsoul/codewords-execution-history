@@ -45,7 +45,9 @@ export default function HomePage(): JSX.Element {
   }, []);
 
   return isLoading ? (
-    <div>Loading...</div>
+    <main className="grow flex flex-col justify-start items-start px-12">
+      Loading...
+    </main>
   ) : (
     <main className="grow flex flex-col justify-start items-start px-12">
       <h1 className="text-2xl md:text-4xl md:pt-3 pb-6 font-semibold">

@@ -37,7 +37,11 @@ export default function ExecutionsPage({
     }
   }, [params.app_id]);
 
-  return (
+  return isLoading ? (
+    <main className="grow flex flex-col justify-start items-start px-80 pt-16 gap-y-10">
+      Loading...
+    </main>
+  ) : (
     <main className="grow flex flex-col justify-start items-start px-80 pt-16 gap-y-10">
       <section className="w-full flex flex-row justify-between items-center gap-x-36">
         <div className="text-2xl text-bold">{appName}</div>
