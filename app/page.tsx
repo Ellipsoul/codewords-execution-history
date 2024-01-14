@@ -48,7 +48,7 @@ export default function HomePage(): JSX.Element {
     <div>Loading...</div>
   ) : (
     <>
-      <h1 className="text-2xl md:text-4xl md:pt-3 pb-6 font-mono">
+      <h1 className="text-2xl md:text-4xl md:pt-3 pb-6 font-semibold">
         App Dashboard
       </h1>
       <section className="flex flex-row gap-x-6 gap-y-6 flex-wrap">

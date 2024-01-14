@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import { MoonIcon, SunIcon } from "@heroicons/react/20/solid";
 
 import { CodewordsLogo } from "./constants";
+import Link from "next/link";
 
 export default function HeaderComponent(): JSX.Element {
   const { theme, setTheme } = useTheme();
@@ -15,7 +16,9 @@ export default function HeaderComponent(): JSX.Element {
 
   return (
     <header className="flex flex-row justify-between items-center h-24 px-12">
-      <CodewordsLogo />
+      <Link href="/">
+        <CodewordsLogo />
+      </Link>
 
       <button
         type="button"
