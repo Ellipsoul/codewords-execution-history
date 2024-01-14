@@ -46,19 +46,24 @@ export default function ExecutionsPage({
     }
   }, [params.app_id]);
 
+  // Load in more executions
+  const showMoreExecutions = () => {
+    console.log("show more executions");
+  };
+
   return isLoading ? (
     <main className="grow flex flex-col justify-start items-start px-80 pt-16 gap-y-10">
       Loading...
     </main>
   ) : (
     <main
-      className="grow flex flex-col justify-start items-start gap-y-4 md:gap-y-7 lg:gap-y-10
+      className="grow flex flex-col justify-start items-center
       px-8 md:px-32 lg:px-40 xl:px-80 pt-2 md:pt-8 lg:pt-12"
     >
-      <div className="w-full text-xl md:text-2xl lg:text-3xl font-mono">
+      <div className="w-full text-xl md:text-2xl lg:text-3xl font-mono pb-4 md:pb-6 lg:pb-8">
         Execution History
       </div>
-      <section className="w-full flex flex-row justify-between items-center gap-x-16 md:gap-x-28 lg:gap-x-36">
+      <section className="w-full flex flex-row justify-between items-center gap-x-16 md:gap-x-28 lg:gap-x-36 pb-5">
         <div className="text-lg md:text-xl lg:text-2xl font-bold">
           {appName}
         </div>
@@ -71,6 +76,9 @@ export default function ExecutionsPage({
         />
       </section>
       <ExecutionsAccordion />
+      <button className="font-bold text-sm" onClick={showMoreExecutions}>
+        View More
+      </button>
     </main>
   );
 }
@@ -81,7 +89,7 @@ function ExecutionsAccordion(): JSX.Element {
     <Accordion
       type="single"
       collapsible
-      className="w-full flex flex-col gap-y-2"
+      className="w-full flex flex-col gap-y-2 pb-3"
     >
       <AccordionItem
         value="item-1"
