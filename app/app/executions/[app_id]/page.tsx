@@ -8,6 +8,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { CircleIcon } from "lucide-react";
+import { formatDistanceToNow } from "date-fns";
 
 const NUM_EXECUTIONS_PER_FETCH = 5;
 
@@ -43,7 +45,9 @@ export default function ExecutionsPage({
           "name"
         ]
       );
-      setAppExecutionsIds(appExecutionsIds["execution_ids"]);
+      setAppExecutionsIds(
+        appExecutionsIds["execution_ids"].sort((a: number, b: number) => b - a)
+      );
       setIsLoading(false);
     }
 
@@ -75,7 +79,7 @@ export default function ExecutionsPage({
         Execution History
       </div>
       <section className="w-full flex flex-row justify-between items-center gap-x-16 md:gap-x-28 lg:gap-x-36 pb-5">
-        <div className="text-lg md:text-xl lg:text-2xl font-bold">
+        <div className="text-md md:text-xl lg:text-2xl font-bold">
           {appName}
         </div>
         <Input
@@ -122,8 +126,16 @@ function ExecutionsAccordion({
           className="rounded-sm bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 dark:hover:bg-zinc-700
         px-4 cursor-pointer border-zinc-300 dark:border-zinc-700"
         >
-          <AccordionTrigger>Execution {executionId}</AccordionTrigger>
-          <AccordionContent>Test</AccordionContent>
+          <AccordionTrigger>
+            <div className="flex flex-row items-center justify-start gap-x-4">
+              <CircleIcon className="w-4 h-4 text-green-500 fill-green-500" />
+              <span className="font-bold">{executionId}</span>
+              <span className="text-xs">
+                {formatDistanceToNow(executionId * 1000)} ago
+              </span>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent>Content goes here</AccordionContent>
         </AccordionItem>
       ))}
     </Accordion>
