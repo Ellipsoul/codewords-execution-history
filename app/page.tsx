@@ -2,26 +2,27 @@
 
 import React, { useEffect, useState } from "react";
 
+import { appIds } from "@/lib/constants";
+
 export default function HomePage(): JSX.Element {
   const [appData, setAppData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Fetch mocked app data
+  // Load mocked app data into component
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
-      const [response1, response2] = await Promise.all([
-        fetch("/mock_app_data/app_1.json"),
-        fetch("/mock_app_data/app_2.json"),
-      ]);
 
-      const [data1, data2] = await Promise.all([
-        response1.json(),
-        response2.json(),
-      ]);
-      console.log(data1);
+      const appDataUrls = appIds.map(
+        (appId) => `/mock_app_data/app_${appId}.json`
+      );
 
-      setAppData([data1, data2]);
+      const responses = await Promise.all(appDataUrls.map((url) => fetch(url)));
+      const data = await Promise.all(
+        responses.map((response) => response.json())
+      );
+
+      setAppData(data);
       setIsLoading(false);
     }
 
@@ -32,5 +33,13 @@ export default function HomePage(): JSX.Element {
     }
   }, []);
 
-  return isLoading ? <div>Loading...</div> : <div>{appData[0]["app_id"]}</div>;
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : (
+    <>
+      <h1 className="text-3xl">Hello! This is the dashboard</h1>
+      <div>{appData[0]["app_id"]}</div>
+      <div>{appData[1]["app_id"]}</div>
+    </>
+  );
 }
