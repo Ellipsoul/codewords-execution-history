@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Metadata } from "next";
 import "./globals.css";
 
 import { Providers } from "./(app)/Providers";
@@ -7,14 +7,14 @@ import HeaderComponent from "./(app)/HeaderComponent";
 import { classNames } from "@/lib/helpers";
 import FooterComponent from "./(app)/FooterComponent";
 
-// The entire app uses the Inter font
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
 export const metadata: Metadata = {
   title: "CodeWords*",
   description:
     "Build custom software with natural language. From problem statement to deployment in minutes.",
 };
+
+// The entire app uses the Inter font
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export default function RootLayout({
   children,
