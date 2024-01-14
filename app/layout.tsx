@@ -31,7 +31,9 @@ export default function RootLayout({
       >
         <Providers>
           <HeaderComponent />
-          <main className="grow">{children}</main>
+          <main className="grow flex flex-col justify-start items-start px-12">
+            {children}
+          </main>
           <FooterComponent />
         </Providers>
       </body>

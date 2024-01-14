@@ -1,11 +1,20 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 import { appIds } from "@/lib/constants";
+import Link from "next/link";
 
 export default function HomePage(): JSX.Element {
-  const [appData, setAppData] = useState<any[]>([]);
+  const [appsData, setAppsData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // Load mocked app data into component
@@ -13,16 +22,18 @@ export default function HomePage(): JSX.Element {
     async function fetchData() {
       setIsLoading(true);
 
-      const appDataUrls = appIds.map(
+      const appsDataUrls = appIds.map(
         (appId) => `/mock_app_data/app_${appId}.json`
       );
 
-      const responses = await Promise.all(appDataUrls.map((url) => fetch(url)));
+      const responses = await Promise.all(
+        appsDataUrls.map((url) => fetch(url))
+      );
       const data = await Promise.all(
         responses.map((response) => response.json())
       );
 
-      setAppData(data);
+      setAppsData(data);
       setIsLoading(false);
     }
 
@@ -37,9 +48,35 @@ export default function HomePage(): JSX.Element {
     <div>Loading...</div>
   ) : (
     <>
-      <h1 className="text-3xl">Hello! This is the dashboard</h1>
-      <div>{appData[0]["app_id"]}</div>
-      <div>{appData[1]["app_id"]}</div>
+      <h1 className="text-2xl md:text-4xl md:pt-3 pb-6 font-mono">
+        App Dashboard
+      </h1>
+      <section className="flex flex-row gap-x-6 gap-y-6 flex-wrap">
+        {appsData.map((appData) => (
+          <Link
+            key={appData["app_id"]}
+            href={`/app/executions/${appData["app_id"]}`}
+          >
+            <CardComponent appData={appData} />
+          </Link>
+        ))}
+      </section>
     </>
   );
 }
+
+/**
+ * Renders a card component with the provided app data.
+ */
+const CardComponent = ({ appData }: { appData: any }) => {
+  const appName =
+    appData["workflow_description_component"]["workflow_description"]["name"];
+
+  return (
+    <Card className="w-64 h-48 cursor-pointer bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700">
+      <CardHeader>
+        <CardTitle className="text-lg">{appName}</CardTitle>
+      </CardHeader>
+    </Card>
+  );
+};
