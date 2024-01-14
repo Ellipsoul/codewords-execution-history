@@ -79,13 +79,13 @@ export default function ExecutionsPage({
         Execution History
       </div>
       <section className="w-full flex flex-row justify-between items-center gap-x-16 md:gap-x-28 lg:gap-x-36 pb-5">
-        <div className="text-md md:text-xl lg:text-2xl font-bold">
+        <div className="text-xs xs:text-sm  sm:text-lg md:text-xl lg:text-2xl font-bold">
           {appName}
         </div>
         <Input
-          className="w-48 sm:w-64"
+          className="w-32 xs:w-48 sm:w-64"
           type="text"
-          placeholder="Search executions"
+          placeholder="Search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -124,13 +124,15 @@ function ExecutionsAccordion({
           key={executionId}
           value={String(executionId)}
           className="rounded-sm bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 dark:hover:bg-zinc-700
-        px-4 cursor-pointer border-zinc-300 dark:border-zinc-700"
+          px-2 sm:px-4 cursor-pointer border-zinc-300 dark:border-zinc-700"
         >
           <AccordionTrigger>
             <div className="flex flex-row items-center justify-start gap-x-4">
-              <CircleIcon className="w-4 h-4 text-green-500 fill-green-500" />
-              <span className="font-bold">{executionId}</span>
-              <span className="text-xs">
+              <CircleIcon className="w-2 h-2 xs:w-3 xs:h-3 md:w-4 md:h-4 text-green-500 fill-green-500" />
+              <span className="font-bold text-xs sm:text-sm md:text-md">
+                {executionId}
+              </span>
+              <span className="text-2xs xs:text-xs">
                 {formatDistanceToNow(executionId * 1000)} ago
               </span>
             </div>

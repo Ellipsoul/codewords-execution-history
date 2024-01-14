@@ -38,11 +38,11 @@ export default function HomePage(): JSX.Element {
   }, []);
 
   return isLoading ? (
-    <main className="grow flex flex-col justify-start items-start px-12">
+    <main className="grow flex flex-col justify-start items-start px-6 sm:px-12">
       Loading...
     </main>
   ) : (
-    <main className="grow flex flex-col justify-start items-start px-12">
+    <main className="grow flex flex-col justify-start items-start px-6 sm:px-12">
       <h1 className="text-2xl md:text-4xl md:pt-3 pb-6 font-semibold">
         App Dashboard
       </h1>

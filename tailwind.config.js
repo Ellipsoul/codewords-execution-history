@@ -17,6 +17,12 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        xs: "425px",
+      },
+      fontSize: {
+        "2xs": ".65rem",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

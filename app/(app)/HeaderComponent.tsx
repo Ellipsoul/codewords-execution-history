@@ -15,7 +15,7 @@ export default function HeaderComponent(): JSX.Element {
   };
 
   return (
-    <header className="flex flex-row justify-between items-center h-24 px-12">
+    <header className="flex flex-row justify-between items-center h-24 px-6 sm:px-12">
       <Link href="/">
         <CodewordsLogo />
       </Link>
