@@ -68,7 +68,10 @@ const CardComponent = ({ appData }: { appData: any }) => {
     appData["workflow_description_component"]["workflow_description"]["name"];
 
   return (
-    <Card className="w-64 h-48 cursor-pointer bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700">
+    <Card
+      className="w-64 h-48 cursor-pointer bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800
+      dark:hover:bg-zinc-700"
+    >
       <CardHeader>
         <CardTitle className="text-lg">{appName}</CardTitle>
       </CardHeader>

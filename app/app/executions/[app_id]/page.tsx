@@ -2,6 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function ExecutionsPage({
   params,
@@ -64,7 +70,50 @@ export default function ExecutionsPage({
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </section>
-      <section className="w-full">Accordion goes here</section>
+      <section className="w-full">
+        <AccordionDemo />
+      </section>
     </main>
+  );
+}
+
+function AccordionDemo() {
+  return (
+    <Accordion
+      type="single"
+      collapsible
+      className="w-full flex flex-col gap-y-2"
+    >
+      <AccordionItem
+        value="item-1"
+        className="rounded-sm bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 dark:hover:bg-zinc-700
+        px-4 cursor-pointer border-zinc-300 dark:border-zinc-700"
+      >
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It adheres to the WAI-ARIA design pattern.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem
+        value="item-2"
+        className="rounded-sm bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 dark:hover:bg-zinc-700
+        px-4 cursor-pointer border-zinc-300 dark:border-zinc-700"
+      >
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It adheres to the WAI-ARIA design pattern.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem
+        value="item-3"
+        className="rounded-sm bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 dark:hover:bg-zinc-700
+        px-4 cursor-pointer border-zinc-300 dark:border-zinc-700"
+      >
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It adheres to the WAI-ARIA design pattern.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 }

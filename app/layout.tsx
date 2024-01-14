@@ -26,7 +26,7 @@ export default function RootLayout({
       <body
         className={classNames(
           inter.className,
-          "min-h-screen flex flex-col justify-start"
+          "min-h-screen flex flex-col justify-start bg-zinc-100 dark:bg-zinc-900"
         )}
       >
         <Providers>
