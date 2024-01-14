@@ -12,6 +12,8 @@ export default function ExecutionsPage({
   const [appExecutions, setAppExecutions] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
   // Load mocked app data and executions into component
   useEffect(() => {
     async function fetchData() {
@@ -58,11 +60,11 @@ export default function ExecutionsPage({
           className="w-48 sm:w-64"
           type="text"
           placeholder="Search executions"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </section>
-      <section className="w-full border border-white">
-        Accordion goes here
-      </section>
+      <section className="w-full">Accordion goes here</section>
     </main>
   );
 }
