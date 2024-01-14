@@ -69,7 +69,7 @@ const CardComponent = ({ appData }: { appData: any }) => {
 
   return (
     <Card
-      className="w-64 h-48 cursor-pointer bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800
+      className="w-64 h-48 cursor-pointer bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800
       dark:hover:bg-zinc-700"
     >
       <CardHeader>

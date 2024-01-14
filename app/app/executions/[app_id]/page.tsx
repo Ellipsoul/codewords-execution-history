@@ -83,7 +83,7 @@ export default function ExecutionsPage({
       className="grow flex flex-col justify-start items-center
       px-8 md:px-32 lg:px-40 xl:px-80 pt-2 md:pt-8 lg:pt-12"
     >
-      <div className="w-full text-xl md:text-2xl lg:text-3xl font-mono pb-4 md:pb-6 lg:pb-8">
+      <div className="w-full text-xl md:text-2xl lg:text-3xl font-mono pb-4 md:pb-6 lg:pb-8 tracking-tighter">
         Execution History
       </div>
       <section className="w-full flex flex-row justify-between items-center gap-x-16 md:gap-x-28 lg:gap-x-36 pb-5">
@@ -104,7 +104,7 @@ export default function ExecutionsPage({
         searchTerm={searchTerm}
       />
       <button
-        className="font-bold text-sm disabled:opacity-20 disabled:cursor-not-allowed"
+        className="font-bold text-2xs xs:text-xs sm:text-sm disabled:opacity-20 disabled:cursor-not-allowed"
         onClick={showMoreExecutions}
         disabled={
           itemsToDisplay >=
